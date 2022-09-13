@@ -27,3 +27,13 @@ Content-Type: application/json
     "id": 2,
     "name": "new name"
 }
+
+###
+
+POST http://localhost:3000/api/wilders/addSkill
+Content-Type: application/json
+
+{
+    "wilderName": "new name",
+    "skillName": "Javascript"
+}
