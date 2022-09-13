@@ -15,6 +15,10 @@ app.post("/api/wilders", wilderController.create);
 
 app.delete("/api/wilders", wilderController.delete);
 
+app.get("/api/wilders", wilderController.read);
+
+app.put("/api/wilders", wilderController.update);
+
 const start = async () => {
   await dataSource.initialize();
   app.listen(port, () => {
