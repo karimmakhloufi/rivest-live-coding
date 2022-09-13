@@ -7,4 +7,13 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:3000/
+GET http://localhost:3000/api/wilders
+
+###
+
+DELETE http://localhost:3000/api/wilders
+Content-Type: application/json
+
+{
+    "idToDelete": 1
+}
