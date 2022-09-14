@@ -4,7 +4,13 @@ const dataSource = require("../utils").dataSource;
 
 module.exports = {
   read: async (req, res) => {
-    const allWilders = await dataSource.getRepository(wilder).find();
+    const allWilders = await dataSource.getRepository(wilder).find({
+      relations: {
+        grades: {
+          skill: true,
+        },
+      },
+    });
     res.send(allWilders);
   },
   create: (req, res) => {

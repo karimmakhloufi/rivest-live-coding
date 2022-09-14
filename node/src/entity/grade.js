@@ -1,22 +1,25 @@
 const EntitySchema = require("typeorm").EntitySchema;
 
 module.exports = new EntitySchema({
-  name: "Wilder",
+  name: "Grade",
   columns: {
     id: {
       type: "int",
       primary: true,
       generated: true,
     },
-    name: {
-      type: "text",
+    grade: {
+      type: "int",
     },
   },
   relations: {
-    grades: {
-      type: "one-to-many",
-      target: "Grade",
-      inverseSide: "wilder",
+    wilder: {
+      type: "many-to-one",
+      target: "Wilder",
+    },
+    skill: {
+      type: "many-to-one",
+      target: "Skill",
     },
   },
 });
