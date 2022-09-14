@@ -1,7 +1,7 @@
-const Skill = () => (
+const Skill = ({ title, votes }) => (
   <li>
-    CSS
-    <span className="votes">3</span>
+    {title}
+    <span className="votes">{votes}</span>
   </li>
 );
 
