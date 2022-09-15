@@ -1,7 +1,18 @@
+import { useEffect } from "react";
+import axios from "axios";
 import "./App.css";
 import Wilder from "./components/Wilder";
 
 function App() {
+  useEffect(() => {
+    const fetchData = async () => {
+      const wildersFromApi = await axios.get(
+        "http://localhost:5000/api/wilders"
+      );
+      console.log(wildersFromApi.data);
+    };
+    fetchData();
+  }, []);
   const wildersData = [
     {
       name: "Ringo",
