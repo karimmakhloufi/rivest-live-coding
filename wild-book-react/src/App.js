@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "./App.css";
 import Wilder from "./components/Wilder";
+import AddWilder from "./components/AddWilder";
 
 function App() {
   const dataManipulation = (dataFromApi) => {
@@ -33,6 +34,7 @@ function App() {
         </div>
       </header>
       <main className="container">
+        <AddWilder />
         <h2>Wilders</h2>
         <section className="card-row">
           {wilders.map((el, index) => (
