@@ -4,20 +4,21 @@ import axios from "axios";
 const AddWilder = () => {
   const [wilderName, setWilderName] = useState("");
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        axios.post("http://localhost:5000/api/wilders", { name: wilderName });
-      }}
-    >
+    <div>
       <input
         value={wilderName}
         onChange={(e) => {
           setWilderName(e.target.value);
         }}
       />
-      <button>Add Wilder</button>
-    </form>
+      <button
+        onClick={() => {
+          axios.post("http://localhost:5000/api/wilders", { name: wilderName });
+        }}
+      >
+        Add Wilder
+      </button>
+    </div>
   );
 };
 
