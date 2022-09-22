@@ -38,7 +38,12 @@ function App() {
         <h2>Wilders</h2>
         <section className="card-row">
           {wilders.map((el, index) => (
-            <Wilder key={index} name={el.name} city={el.city} />
+            <Wilder
+              key={index}
+              name={el.name}
+              city={el.city}
+              skills={el.skills}
+            />
           ))}
         </section>
       </main>

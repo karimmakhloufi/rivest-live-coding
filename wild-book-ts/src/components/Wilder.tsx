@@ -1,11 +1,13 @@
+import Skill, { ISkillProps } from "./Skill";
 import blank_profile from "../assets/blank_profile.png";
 
 export interface IWilderProps {
   name: string;
   city: string;
+  skills: ISkillProps[];
 }
 
-const Wilder = ({ name, city }: IWilderProps) => {
+const Wilder = ({ name, city, skills }: IWilderProps) => {
   return (
     <article className="card">
       <img src={blank_profile} alt="Jane Doe Profile" />
@@ -18,7 +20,11 @@ const Wilder = ({ name, city }: IWilderProps) => {
         commodo consequat.
       </p>
       <h4>Wild Skills</h4>
-      <ul className="skills"></ul>
+      <ul className="skills">
+        {skills.map(({ title, votes }, index) => (
+          <Skill key={index} title={title} votes={votes} />
+        ))}
+      </ul>
     </article>
   );
 };
