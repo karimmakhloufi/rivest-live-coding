@@ -17,6 +17,7 @@ app.get("/", (req, res) => {
 
 app.get("/api/wilder", wilderController.read);
 app.post("/api/wilder", wilderController.create);
+app.put("/api/wilder", wilderController.update);
 
 app.get("/api/skill", skillController.read);
 app.post("/api/skill", skillController.create);

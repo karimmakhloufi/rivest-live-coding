@@ -29,6 +29,20 @@ const wilderController = {
       res.send("Error while getting the wilders");
     }
   },
+  update: async (req: Request, res: Response) => {
+    try {
+      const wilderToUpdate = await dataSource.manager.findOneByOrFail(Wilder, {
+        id: req.body.id,
+      });
+      wilderToUpdate.name = req.body.newWilder.name;
+      const result = await dataSource.manager.save(wilderToUpdate);
+      console.log("result of update", result);
+      res.send("OK");
+    } catch (err) {
+      console.log(err);
+      res.send("Error while updating the wilder");
+    }
+  },
 };
 
 export default wilderController;
