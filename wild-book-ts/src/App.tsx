@@ -1,32 +1,43 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
+import { useQuery, gql } from "@apollo/client";
 import "./App.css";
 import Wilder, { IWilderProps } from "./components/Wilder";
 
+const GET_ALL_WILDERS = gql`
+  query GetAllWilders {
+    getAllWilders {
+      name
+      grades {
+        grade
+        skill {
+          name
+        }
+      }
+    }
+  }
+`;
+
 function App() {
   const dataManipulation = (dataFromApi: any) => {
-    const newData = dataFromApi.map((wilder: { grades: []; name: string }) => {
-      const cleanSkills = wilder.grades.map(
-        (grade: { grade: number; skill: { name: string } }) => {
-          return { title: grade.skill.name, votes: grade.grade };
-        }
-      );
-      return { name: wilder.name, skills: cleanSkills };
-    });
+    const newData: IWilderProps[] = dataFromApi.map(
+      (wilder: { grades: []; name: string }) => {
+        const cleanSkills = wilder.grades.map(
+          (grade: { grade: number; skill: { name: string } }) => {
+            return { title: grade.skill.name, votes: grade.grade };
+          }
+        );
+        return { name: wilder.name, skills: cleanSkills };
+      }
+    );
     return newData;
   };
-  const [wilders, setWilders] = useState<IWilderProps[]>([]);
+  const { loading, error, data } = useQuery(GET_ALL_WILDERS);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const wildersFromApi = await axios.get(
-        "http://localhost:5000/api/wilder"
-      );
-      const formattedWilders = dataManipulation(wildersFromApi.data);
-      setWilders(formattedWilders);
-    };
-    fetchData();
-  }, []);
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error :(</p>;
+
+  console.log(data);
+
   return (
     <div>
       <header>
@@ -37,7 +48,7 @@ function App() {
       <main className="container">
         <h2>Wilders</h2>
         <section className="card-row">
-          {wilders.map((el, index) => (
+          {dataManipulation(data.getAllWilders).map((el, index) => (
             <Wilder
               key={index}
               name={el.name}
