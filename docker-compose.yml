@@ -9,3 +9,14 @@ services:
     build: ./node-ts
     ports:
       - 5000:5000
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: changemeinprodplease
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
