@@ -6,6 +6,7 @@ WORKDIR /app
 
 COPY public public
 COPY package.json ./
+COPY package-lock.json ./
 COPY tsconfig.json ./
 
 RUN npm install
