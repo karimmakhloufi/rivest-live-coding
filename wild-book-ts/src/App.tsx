@@ -1,8 +1,9 @@
 import { useQuery, gql } from "@apollo/client";
 import "./App.css";
 import Wilder, { IWilderProps } from "./components/Wilder";
+import AddWilderForm from "./components/AddWilderForm";
 
-const GET_ALL_WILDERS = gql`
+export const GET_ALL_WILDERS = gql`
   query GetAllWilders {
     getAllWilders {
       name
@@ -45,6 +46,7 @@ function App() {
         </div>
       </header>
       <main className="container">
+        <AddWilderForm />
         <h2>Wilders</h2>
         <section className="card-row">
           {dataManipulation(data.getAllWilders).map((el, index) => (
